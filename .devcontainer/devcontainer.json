@@ -1,0 +1,26 @@
+{
+  "name": "SEO Platform AWS Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/python:3.9-bullseye", // Using a specific Python 3.9 version
+  "features": {
+    "ghcr.io/devcontainers/features/aws-cli:1": {},      // Installs AWS CLI
+    "ghcr.io/devcontainers/features/docker-in-docker:2": { // Installs Docker (for later)
+      "version": "latest",
+      "moby": true
+    },
+    "ghcr.io/devcontainers-contrib/features/postgres-asdf:1": { // Installs psql (PostgreSQL client)
+      "version": "latest" 
+    }
+  },
+  "postCreateCommand": "pip --disable-pip-version-check --no-cache-dir install boto3 psycopg2-binary requests beautifulsoup4 python-dotenv", // Common Python libraries
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-azuretools.vscode-docker",
+        "amazonwebservices.aws-toolkit-vscode" // AWS Toolkit (optional but helpful)
+      ]
+    }
+  },
+  "forwardPorts": [8080], // Example if you run local test web servers
+  "remoteUser": "vscode"
+}
